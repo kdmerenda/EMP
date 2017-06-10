@@ -1,0 +1,15 @@
+CC=g++ -g -fopenmp -Wall -O3
+SRC=emp3d-fork.cpp
+OBJS=emp3d.o
+ROOT_CXXFLAGS    = $(shell $(ROOTSYS)/bin/root-config --cflags)
+ROOT_LDFLAGS     = $(shell $(ROOTSYS)/bin/root-config --ldflags)
+ROOT_LDFLAGS    += $(shell $(ROOTSYS)/bin/root-config --libs)
+
+all: emp3d
+
+emp3d: $(OBJS)
+	$(CC) -o emp3d $(OBJS)
+emp3d.o: $(SRC)
+	$(CC)  -o emp3d.o -c $(SRC)
+clean:
+	rm *.o emp3d
